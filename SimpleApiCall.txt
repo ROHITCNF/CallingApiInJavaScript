@@ -1,0 +1,34 @@
+const url1 = "https://catfact.ninja/fact";
+const url2 = "https://api.publicapis.org/entries";
+//ccreating array for data coming from the url2
+let arr1 ={};
+let arr2 =[];
+
+const fetchUrl1 = async () => {
+  const response = await fetch(url1);
+  const myJson = await response.json();
+  //console.log(myJson);
+  arr1.fact = myJson.fact;
+  arr1.length = myJson.length;
+  
+  //console.log(arr1);
+}
+const fetchUrl2 = async () => {
+  const response = await fetch(url2);
+  const myJson = await response.json();
+ 
+ for(let i=0;i<myJson.entries.length;i++){
+ const data1 = arr1.length + " Hi I am from first Api";
+ const data2 = myJson.entries[i].API;
+ arr2.push(data2+ " " +data1);
+ }
+  console.log(arr2);
+  
+}
+
+fetchUrl1();
+ 
+fetchUrl2();
+
+//but still the problem is i am not able to access the arr1 and arr2 here as JS enegine would have exwcuted this line before getting the resonses from the API
+  
